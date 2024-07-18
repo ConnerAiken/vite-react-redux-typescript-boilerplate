@@ -1,0 +1,13 @@
+/**
+* The index.scss contains top-level css, it should not include any specific components.
+* This does not get automatically included in every scss file like globals.scss does.
+*/ 
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+}
+ 
