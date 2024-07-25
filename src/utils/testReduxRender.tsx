@@ -1,16 +1,18 @@
-// @ts-nocheck
-import React from "react";
+import React, { PropsWithChildren } from 'react'
 import { render } from "@testing-library/react";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux"; 
 import HistorySlice from "../redux/slices/historySlice";
 import { blackjackApi } from "../redux/services/example.ts";
+import { RootState } from "../redux/rootReducer";
+
+const preloadedState: RootState = {};
  
 
 export function renderWithRedux(
   ui: React.ReactElement,
   {
-    preloadedState = {},
+    preloadedState,
     // Automatically create a store instance if no store was passed in
     store = configureStore({
         reducer: {
@@ -21,9 +23,9 @@ export function renderWithRedux(
       preloadedState,
     }),
     ...renderOptions
-  } = {}
+  }  
 ) {
-  function Wrapper({ children }) {
+  function Wrapper({ children }: PropsWithChildren<{}>): JSX.Element {
     return <Provider store={store}>{children}</Provider>;
   }
 
